@@ -1,0 +1,1 @@
+<?php // Router for handling public and private pages ?>
