@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block content%}
+    <h3>Who do you want to select?</h3>
+    <form action={{action}} method="post">
+        {{form.csrf_token()}}
+        {{form.ownerID.label}}
+        <fieldset role="group">
+            {{form.ownerID()}}
+            {{form.submit()}}
+        </fieldset>
+
+    </form>
+
+{%endblock%}

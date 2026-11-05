@@ -1,0 +1,11 @@
+/* add your custom stye rules below if it conflicts with pico or bootstrap
+   add the !important property to the end of the style rule as shown in the
+   example below  */
+
+
+h1{
+    color: #003087 !important;
+}
+nav a{
+    align-self:center;
+}

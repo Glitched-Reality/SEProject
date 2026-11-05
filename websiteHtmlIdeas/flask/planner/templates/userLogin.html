@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if not new%}
+        <h1>Hello User!</h1>
+        <form action="/user/login" method="post">
+    {%else%}
+        <h1>Hello, Please Make an Account!</h1>
+        <form action="/user/new" method="post">
+    {%endif%}
+        <input type="text" name="username"
+        placeholder="Username" autofocus autocomplete="off">
+        <input type="text" name="password"
+        placeholder="Password" autocomplete="off">
+        <input type="submit" value="Login">
+    </form>
+    {%if new%}
+        <a href="/user/login" role="button">Already a user? Login here!</a>
+    {%else%}
+        <a href="/user/new" role="button">Not a user? Make an account here!</a>
+    {%endif%}
+{%endblock%}

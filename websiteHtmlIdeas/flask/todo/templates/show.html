@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <h2>Task's that need completed</h2>
+    {%if taskList%}
+        <ul>
+            {%for task in taskList%}
+                <li class="{{task.priority}}">
+                    {{task.name}} - {{task.date}}
+                    <a href="/edit/{{loop.index0}}" role="button" class="contrast">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a href="/delete/{{loop.index0}}" role="button" class="secondary">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </li>
+            {%endfor%}
+        </ul>
+    {%else%}
+        <h3>There are currently no tasks for you today!</h3>
+        <a href="/add" role="button" class="secondary">Add a new task!</a>
+
+    {%endif%}
+{%endblock%}

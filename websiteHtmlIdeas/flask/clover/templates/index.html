@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if session["LUCKY_USER"]%}
+        <h2>Hello {{session["LUCKY_USER"]}}!</h2>
+        <h4>Your lucky numbers are:</h3>
+        <div class="grid">
+            {%for n in session.get("luckyNumbers")%}
+                <h3>{{n}}</h3>
+            {%endfor%}
+        </div>
+
+    {%else%}
+        <h2>Tell us your name, so we can generate your lucky numbers!</h2>
+        <div class="grid">
+            <form action="/" method="get">
+                    <input name="luckyUser" type="text" autofocus placeholder="Enter Your Name" autocomplete="off">
+                    <button type="submit">GO!</button>
+            </form>
+            <div>
+                <img class="horseshoe" src="/static/horseshoe.png" alt="horseshoe">
+            </div>
+        </div>
+    {%endif%}
+{%endblock%}

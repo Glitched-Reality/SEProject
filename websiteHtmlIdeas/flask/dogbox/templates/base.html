@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css">
+        <link rel="shortcut icon" href="/static/paw-solid.svg">
+        <link rel="stylesheet" href="/static/style.css">
+        <title>Hello world!</title>
+    </head>
+    <body>
+        <main class="container">
+            <nav>
+                <ul>
+                    <li><a href="/"><strong>DogBox</strong></a></li>
+                </ul>
+                <ul>
+                    <li><a href="/add/owner">Owners</a></li>
+                    <li><a href="/add/dog">Dogs</a></li>
+                    <li><a href="/add/sub">Subscriptions</a></li>
+                </ul>
+            </nav>
+            {%with messages=get_flashed_messages()%}
+                {%if messages%}
+                    <div class="flashMSG">
+                        {%for message in messages%}
+                            <p>{{message}}</p>
+                        {%endfor%}
+                    </div>
+                {%endif%}
+            {%endwith%}
+
+            <h1>DogBox Subscription Management</h1>
+            <div>
+                {%block content%}{%endblock%}
+            </div>
+
+        </main>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block content%}
+    <h3>Who do you want to edit?</h3>
+    <form action={{action}} method="post">
+        {{form.csrf_token()}}
+        {{form.dogID.label}}
+        <fieldset role="group">
+            {{form.dogID()}}
+            {{form.submit()}}
+        </fieldset>
+
+    </form>
+
+{%endblock%}

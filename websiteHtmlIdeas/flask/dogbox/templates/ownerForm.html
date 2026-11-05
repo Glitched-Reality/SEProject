@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{%block content%}
+    <section class="ownerForm">
+        {%if action=="add"%}
+            <h2>Add a new Owner</h2>
+            <form action="/add/owner" method="post">
+        {%else%}
+            <h2>Update Owner</h2>
+            <form action="/edit/owner/{{ownerID}}" method="post">
+        {%endif%}
+
+            {{form.csrf_token}}
+            <div class="grid">
+                <div>
+                    {{form.firstName.label}}{{form.firstName(placeholder="Bob")}}
+                </div>
+                <div>
+                    {{form.lastName.label}}{{form.lastName(placeholder="Smith")}}
+                </div>
+            </div>
+            {{form.email.label}}{{form.email(placeholder="user@email.com")}}
+
+            {%if action=="add"%}
+                <button type="submit">Add Owner</button>
+            {%else%}
+                <button type="submit">Save Changes</button>
+            {%endif%}
+        </form>
+    </section>
+
+{%endblock%}

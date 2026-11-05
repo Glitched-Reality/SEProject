@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>First Flask App</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <p>
+            <a href="/">Home</a>
+            <a href="/goodbye">Goodbye</a>
+        </p>
+        {% block content %} {% endblock %}
+
+        <footer>
+            <p>This is on every page!!</p>
+        </footer>
+
+    </body>
+</html>

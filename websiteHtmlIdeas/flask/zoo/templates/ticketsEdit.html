@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+{%block content%}
+    <h2 class="zooFont">Edit Your Tickets</h2>
+    <form actions="/tickets/edit/{{ticket.orderNumber}}" method="post">
+        <p>{{ticket.orderNumber}}</p>
+        <input type="text" name="name"
+        autofocus autocomplete="off"
+        value="{{ticket.name}}">
+        <input type="text" name="contact"
+        autocomplete="off"
+        value="{{ticket.contact}}">
+        <input type="date" name="visitDate"
+        value="{{ticket.visitDate}}">
+        <input type="number" name="numTickets" min="0"
+        value="{{ticket.numTickets}}">
+        <input type="submit" value="Add to cart">
+    </form>
+
+{%endblock%}
+

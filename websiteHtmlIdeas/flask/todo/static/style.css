@@ -1,0 +1,19 @@
+.error *{
+    color:red;
+    text-align:center;
+}
+
+.high{
+    color:darkred;
+    font-weight:900;
+}
+
+.normal{
+    color:blue;
+    font-weight:400;
+}
+
+.low{
+    color:green;
+    font-weight:200;
+}

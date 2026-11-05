@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{%block content%}
+    <div>
+        <h1>Make A New Playlist</h1>
+        <form action="/newPlaylist" method="POST">
+            <input id="playlistName" name="playlistName"
+                placeholder="Name of the Playlist"
+                autocomplete="off" autofocus>
+            <button type="submit">Make a New Playlist</button>
+        </form>
+    </div>
+{%endblock%}

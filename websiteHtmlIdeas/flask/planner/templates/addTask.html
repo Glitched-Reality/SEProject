@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if task%}
+        <h1>Edit Task</h1>
+        <form action="/tasks/{{task.taskID}}/edit" method="post">
+            <input type="text" name="taskName"
+            placeholder="Name of Task" autofocus autocomplete="off" value="{{task.taskName}}">
+            <input type="date" name="date" value="{{task.date}}"
+            placeholder="Finish by date">
+            <textarea name="description" placeholder="Write a breif description" value="{{task.description}}"></textarea>
+            <input type="number" name="priority"
+            min="-5" max="5" placeholder="Priority from 5 to -5"
+            value="{{task.priority}}">
+            <input type="number" name="done"
+            min="0" max="1" placeholder="Input 0 if not done, 1 if done."
+            value="{{task.done}}">
+            <input type="submit" value="Submit">
+        </form>
+    {%else%}
+        <h1>Add a Task</h1>
+        <form action="/tasks/add" method="post">
+            <input type="text" name="taskName"
+            placeholder="Name of Task" autofocus autocomplete="off">
+            <input type="date" name="date" value="{{today}}"
+            placeholder="Finish by date">
+            <textarea name="description" placeholder="Write a breif description"></textarea>
+            <input type="number" name="priority"
+            min="-5" max="5" placeholder="Priority from 5 to -5">
+            <input type="number" name="done"
+            min="0" max="1" placeholder="Input 0 if not done, 1 if done.">
+            <input type="submit" value="Submit">
+        </form>
+    {%endif%}
+
+{%endblock%}

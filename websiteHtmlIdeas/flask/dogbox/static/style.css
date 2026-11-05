@@ -1,0 +1,11 @@
+h1{
+    text-align:center;
+    /* color:red; */
+}
+img{
+    width:100%;
+}
+
+th img{
+    width:100px;
+}

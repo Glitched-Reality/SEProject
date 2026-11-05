@@ -1,0 +1,8 @@
+{%extends "base.html"%}
+{%block content%}
+    <div class="homepage">
+        <img src="/static/fme_logo_square.png" alt="FME Logo" width="400px">
+        <h2>You have {%if numSongs%}{{numSongs}} songs {%else%}no songs{%endif%} in your Playlist.</h2>
+        <a href="/newPlaylist" role="button">Create a Playlist</a>
+    </div>
+{%endblock%}

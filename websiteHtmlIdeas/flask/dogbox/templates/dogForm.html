@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+{%block content%}
+    <section class="dogForm">
+        {%if action=="add"%}
+            <h2>Add a new Dog</h2>
+            <form action="/add/dog" method="post">
+        {%else%}
+            <h2>Update Dog</h2>
+            <form action="/edit/dog/{{dogID}}" method="post">
+        {%endif%}
+
+            {{form.csrf_token}}
+            <fieldset role="group">
+                <div>
+                    {{form.ownerID.label}}{{form.ownerID}}
+                </div>
+                <div>
+                    {{form.name.label}}{{form.name(placeholder="Billy")}}
+                </div>
+            </fieldset>
+            <div class="grid">
+                <div>
+                    {{form.breed.label}}{{form.breed(placeholder="Husky")}}
+                </div>
+                <div>
+                    {{form.gender.label}}{{form.gender}}
+                </div>
+                <div>
+                    {{form.age.label}}{{form.age}}
+                </div>
+            </div>
+
+
+            {%if action=="add"%}
+                <button type="submit">Add Dog</button>
+            {%else%}
+                <button type="submit">Save Changes</button>
+            {%endif%}
+        </form>
+    </section>
+
+{%endblock%}

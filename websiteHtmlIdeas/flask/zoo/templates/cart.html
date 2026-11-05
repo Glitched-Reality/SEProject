@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if session.emptyCart%}
+    <!--show the modal to empty the cart-->
+        {%include "_emptyCart.html"%}
+    {%endif%}
+
+    <h2 class="zooFont">Your Cart ({{session.get("cart")|length}})</h2>
+    {%for order in session.get("cart")%}
+        <details>
+            <summary class="zooFont">Order for {{order.get("visitorName")}}</summary>
+            <div class="cartItem">
+                <p class="col1">Visit on {{order.get("visitDate")}}</p>
+                {%if order.get("visitorContact")%}
+                    <p class="col2">Contact info: {{order.get("visitorContact")}}</p>
+                {%endif%}
+                <a href="/cart/edit/{{loop.index0}}"><i class="bi bi-pencil-square"></i></a>
+                {%if order.get("numberOfTickets")=="1"%}
+                    <p class="col1">Order for 1 person</p>
+                {%else%}
+                    <p class="col1">Order for {{order.get("numberOfTickets")}} people</p>
+                {%endif%}
+                <a href="/cart/delete/{{loop.index0}}"><i class="bi bi-trash3"></i></a>
+            </div>
+        </details>
+    {%endfor%}
+    {%if session.get("cart")|length>0%}
+        <a href="/cart/emptyCart" role="button">Empty Cart</a>
+        <a href="/cart/checkout" role="button">Checkout</a>
+    {%endif%}
+
+    <!-- {{session.get("cart")}} -->
+{%endblock%}

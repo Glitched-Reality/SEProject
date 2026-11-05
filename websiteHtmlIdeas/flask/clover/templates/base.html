@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.green.min.css">
+        <link rel="icon" type="image/x-icon" href="/static/clover.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="/static/style.css">
+
+        <title>Lucky Numbers</title>
+    </head>
+    <body>
+        <main class="container">
+            <nav>
+                <ul>
+                    <li><a href="/" class="secondary">
+                    <i class="bi bi-house-door"></i>
+                    </a></li>
+                </ul>
+                <ul>
+                    <li><strong>🍀 It's Your Lucky Day 🍀</strong></li>
+                </ul>
+                <ul>
+                    <li><a href="/reset" class="secondary">
+                        <i class="bi bi-recycle"></i>
+                        </a></li>
+                </ul>
+            </nav>
+            <h1>
+                “I’m a greater believer in luck, and I find the harder I work the more I have of it.”
+                <small>
+                <cite>— Thomas Jefferson</cite>
+                </small>
+            </h1>
+            <div>
+
+            {%block content%}{%endblock%}
+            
+            </div>
+        </main>
+    </body>
+</html>
+

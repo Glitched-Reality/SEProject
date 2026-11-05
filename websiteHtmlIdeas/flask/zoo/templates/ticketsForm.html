@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{%block content%}
+    <h2 class="zooFont">Order Your Tickets</h2>
+    {%if order%}
+    <form actions="/cart/edit/{{index}}" method="post">
+    {%else%}
+    <form actions="/tickets" method="post">
+    {%endif%}
+        <input type="text" name="visitorName" placeholder="First and Last Name"
+        autofocus autocomplete="off" required
+        {%if order%}value="{{order.get('visitorName')}}"{%endif%}>
+        <input type="text" name="visitorContact" placeholder="Email or Phone"
+        autocomplete="off"
+        {%if order%}value="{{order.get('visitorContact')}}"{%endif%}>
+        <input type="date" name="visitDate"
+        {%if order%}value="{{order.get('visitDate')}}"{%else%}value="{{today}}"{%endif%}>
+        <input type="number" name="numberOfTickets" min="0"
+        {%if order%}value="{{order.get('numberOfTickets')}}"{%else%}value="1"{%endif%}>
+        <input type="submit" value="Add to cart">
+    </form>
+
+{%endblock%}

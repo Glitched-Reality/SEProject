@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%block content%}
+    <h2>{{owner.firstName}} {{owner.lastName}}'s Dogs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for dog in dogs%}
+                <tr>
+                    <th>{{dog.name}}</th>
+                    <th>{{dog.breed}}</th>
+                    <th>{{dog.age}}</th>
+                    <th>
+                        {%if dog.gender=="M"%}
+                            <img src="/static/blue-paw.svg" alt="Blue Paw">
+                        {%else%}
+                            <img src="/static/pink-paw.svg" alt="Blue Paw">
+                        {%endif%}
+                    </th>
+                    <th>
+                        Edit
+                        Delete
+                    </th>
+                </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+    <a href="/show/dog" alt="Choose Different Owner" role="button">Choose Different Owner</a>
+
+{%endblock%}

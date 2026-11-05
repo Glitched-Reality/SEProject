@@ -1,0 +1,24 @@
+.error, .error *{
+    color:red;
+    font-weight:700;
+}
+.title{
+    font-weight:700;
+    justify-content:center;
+    align-content:center;
+    text-align:center;
+    font-size:3rem;
+}
+.homepage{
+    display:grid;
+    justify-content:center;
+    align-items:baseline;
+    justify-items:center;
+}
+.homepage a{
+    justify-self:stretch;
+}
+.content div{
+    justify-items:center;
+    width:100%;
+}

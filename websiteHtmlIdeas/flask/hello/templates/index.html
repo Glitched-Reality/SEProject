@@ -1,0 +1,9 @@
+{% extends "base.html"%}
+
+    {% block content %}
+        <h1>Tell us your name:</h1>
+        <form action="/hello" method="get">
+            <input type="text" placeholder="Name" autofocus autocomplete="off" name="person">
+            <input type="submit" value="Submit">
+        </form>
+    {% endblock %}

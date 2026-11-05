@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if animalDetails%}
+        <h3 class="zooFont">Facts about the {{animalDetails["species"]}}</h3>
+        <div>
+            <details>
+                <summary class="zooFont">Description</summary>
+                <h3>{{animalDetails["description"]}}</h3>
+            </details>
+            <details>
+                <summary class="zooFont">Diet</summary>
+                <h3>{{animalDetails["diet"]}}</h3>
+            </details>
+            <details>
+                <summary class="zooFont">Habitat</summary>
+                <h3>{{animalDetails["habitat"]}}</h3>
+            </details>
+            <details>
+                <summary class="zooFont">Population At Our Zoo</summary>
+                <h3>{{animalDetails["population"]}}</h3>
+            </details>
+        </div>
+    {%else%}
+        <h4>Sorry, there don't appear to be any details for that animal.</h4>
+    {%endif%}
+    <a href="/" role="button">See other animals</a>
+{%endblock%}

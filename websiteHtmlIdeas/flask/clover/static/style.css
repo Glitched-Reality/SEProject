@@ -1,0 +1,15 @@
+h1{
+    text-align:center;
+    margin-bottom:4rem;
+}
+a{
+    color:#265E09;
+    font-size:1.65rem;
+    font-weight: 900;
+    text-decoration: none;
+}
+img.horseshoe{
+    max-width:50%;
+    display:block;
+    margin:0 auto;
+}

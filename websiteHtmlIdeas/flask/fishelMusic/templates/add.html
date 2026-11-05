@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+{%block content%}
+    {%if playlistName%}
+        <div>
+            <h1>Add a New Song</h1>
+            <form action="/add" method="POST">
+                <input id="title" name="title" type="text"
+                    placeholder="Title of the Song"
+                    autocomplete="off" autofocus>
+                <input id="artist" name="artist" type="text"
+                    placeholder="Name of the Artist"
+                    autocomplete="off">
+                <select id="genre" name="genre"
+                    autocomplete="off">
+                    <option disabled selected>Genre</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Classical">Classical</option>
+                    <option value="Country">Country</option>
+                    <option value="80's">80's</option>
+                </select>
+                <input id="rating" name="rating" type="number"
+                    placeholder="Rating from 1 to 5" min="1" max="5"
+                    autocomplete="off">
+                <button type="submit">Confirm new Song</button>
+            </form>
+        </div>
+    {%else%}
+        <div>
+            <h1>No Playlist</h1>
+            <h3>
+                <a href="/newPlaylist">Make a new Playlist</a>
+            <h3>
+        </div>
+
+    {%endif%}
+{%endblock%}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Task Planner</title>
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.slate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <main class="container">
+            <article data-theme="dark">
+                <nav>
+                    <a href="/"><strong>Tasks Planner</strong></a>
+                    <ul>
+                        <li><a href="/tasks">Show Tasks</a></li>
+                        <li><a href="/tasks/add">Add Task</a></li>
+                        <li><a href="/user">User/Login</a></li>
+                        {%if session.get("user")%}
+                            <li><a href="/user/logout">Logout</a></li>
+                        {%endif%}
+                    </ul>
+                </nav>
+            </article>
+            {%with messages=get_flashed_messages()%}
+                {%if messages%}
+                    <div class="flashMSG">
+                        {%for message in messages%}
+                        <p>{{message}}</p>
+                        {%endfor%}
+                    </div>
+                {%endif%}
+            {%endwith%}
+            <div>
+                {%block content%}{%endblock%}
+            </div>
+
+        </main>
+    </body>
+</html>
