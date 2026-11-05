@@ -12,3 +12,6 @@ CPP files to handle daily and weekly tasks like generating reports
 James handles some HTML, all SQL Queries, and the CPP files
 Andy handles the PHP, using the SQL Queries, calling the CPP files, and editing the HTML to be usable
 Dewey handles the documentation, HTML, and outward design of the website
+
+## Test Environment
+A database and web server is ready but needs content still. - Andy
