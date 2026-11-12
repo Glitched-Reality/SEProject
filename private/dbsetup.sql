@@ -7,7 +7,7 @@
     -- roles
     -- statuses
     -- task_comments
-    -- groups
+    -- teams
 
 -- ADD STATUS LATER
 
@@ -121,13 +121,13 @@ create table statuses (
     -- may need a trigger to set use_type to some enum_id based on a string
 );
 
-create table groups (
-    group_id int,
+create table teams (
+    team_id int,
     manager_id int not null,
     name varchar(255) not null,
     description varchar(255),
-    constraint groups_group_id_pk primary key (group_id),
-    constraint groups_manager_id_fk
+    constraint teams_team_id_pk primary key (team_id),
+    constraint teams_manager_id_fk
         foreign key (manager_id)
         references users (user_id)
 
