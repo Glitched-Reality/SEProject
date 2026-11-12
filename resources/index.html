@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Task Project Manager</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h1>Multi-Task Project Manager</h1>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a> |
+            <a href="#projects">Projects</a> |
+            <a href="#tasks">Tasks</a> |
+            <a href="#calendar">Calendar</a> |
+            <a href="#members">Team Members</a> |
+            <a href="#audit">Audit Log</a> |
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <!-- Dashboard -->
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+
+            <h3>Project Overview</h3>
+
+            <p>Total Projects: 3</p>
+            <p>Active Tasks: 5</p>
+            <p>Completed Tasks: 2</p>
+            <p>Overdue Tasks: 1</p>
+
+            <h3>Upcoming Deadlines</h3>
+
+            <ul>
+                <li>Design Homepage - November 10</li>
+                <li>Create Database - November 15</li>
+                <li>Test Application - November 20</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <h3>Current Projects</h3>
+
+            <table border="1">
+                <tr>
+                    <th>Project Name</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Progress</th>
+                </tr>
+
+                <tr>
+                    <td>Website Development</td>
+                    <td>Create project website</td>
+                    <td>November 20</td>
+                    <td>50%</td>
+                </tr>
+
+                <tr>
+                    <td>Database Design</td>
+                    <td>Develop database structure</td>
+                    <td>November 25</td>
+                    <td>25%</td>
+                </tr>
+            </table>
+
+            <h3>Create New Project</h3>
+
+            <form id="projectForm">
+
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName"
+                       name="projectName" required>
+
+                <br><br>
+
+                <label for="projectDescription">
+                    Description:
+                </label>
+                <br>
+                <textarea id="projectDescription"
+                          name="projectDescription"></textarea>
+
+                <br><br>
+
+                <label for="projectDeadline">Deadline:</label>
+                <input type="date" id="projectDeadline"
+                       name="projectDeadline">
+
+                <br><br>
+
+                <button type="submit">Create Project</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Tasks -->
+        <section id="tasks">
+            <h2>Task Management</h2>
+
+            <h3>Current Tasks</h3>
+
+            <table border="1">
+                <tr>
+                    <th>Task Name</th>
+                    <th>Project</th>
+                    <th>Assigned To</th>
+                    <th>Priority</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Design Homepage</td>
+                    <td>Website Development</td>
+                    <td>Member 1</td>
+                    <td>High</td>
+                    <td>November 10</td>
+                    <td>In Progress</td>
+                </tr>
+
+                <tr>
+                    <td>Create Database</td>
+                    <td>Database Design</td>
+                    <td>Member 2</td>
+                    <td>Medium</td>
+                    <td>November 15</td>
+                    <td>Not Started</td>
+                </tr>
+            </table>
+
+            <h3>Create New Task</h3>
+
+            <form id="taskForm">
+
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName"
+                       name="taskName" required>
+
+                <br><br>
+
+                <label for="taskDescription">
+                    Task Description:
+                </label>
+                <br>
+                <textarea id="taskDescription"
+                          name="taskDescription"></textarea>
+
+                <br><br>
+
+                <label for="taskProject">Project:</label>
+                <select id="taskProject" name="taskProject">
+                    <option value="">Select Project</option>
+                    <option value="website">
+                        Website Development
+                    </option>
+                    <option value="database">
+                        Database Design
+                    </option>
+                </select>
+
+                <br><br>
+
+                <label for="assignedMember">Assign To:</label>
+                <select id="assignedMember"
+                        name="assignedMember">
+                    <option value="">Select Member</option>
+                    <option value="member1">Member 1</option>
+                    <option value="member2">Member 2</option>
+                    <option value="member3">Member 3</option>
+                </select>
+
+                <br><br>
+
+                <label for="taskPriority">Priority:</label>
+                <select id="taskPriority" name="taskPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <br><br>
+
+                <label for="taskDeadline">Due Date:</label>
+                <input type="date" id="taskDeadline"
+                       name="taskDeadline">
+
+                <br><br>
+
+                <label for="taskStatus">Status:</label>
+                <select id="taskStatus" name="taskStatus">
+                    <option value="not-started">
+                        Not Started
+                    </option>
+                    <option value="in-progress">
+                        In Progress
+                    </option>
+                    <option value="completed">
+                        Completed
+                    </option>
+                </select>
+
+                <br><br>
+
+                <button type="submit">Create Task</button>
+
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Calendar -->
+        <section id="calendar">
+            <h2>Project Calendar</h2>
+
+            <p>Upcoming project and task deadlines
+               will be displayed here.</p>
+
+            <h3>Upcoming Events</h3>
+
+            <ul>
+                <li>November 10 - Homepage Due</li>
+                <li>November 15 - Database Due</li>
+                <li>November 20 - Application Testing</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- Team Members -->
+        <section id="members">
+            <h2>Team Members</h2>
+
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+
+                <tr>
+                    <td>Member 1</td>
+                    <td>member1@example.com</td>
+                    <td>Project Manager</td>
+                </tr>
+
+                <tr>
+                    <td>Member 2</td>
+                    <td>member2@example.com</td>
+                    <td>Team Member</td>
+                </tr>
+            </table>
+
+            <h3>Add Team Member</h3>
+
+            <form id="memberForm">
+
+                <label for="memberEmail">Email:</label>
+                <input type="email" id="memberEmail"
+                       name="memberEmail" required>
+
+                <br><br>
+
+                <label for="memberRole">Role:</label>
+                <select id="memberRole" name="memberRole">
+                    <option value="member">Team Member</option>
+                    <option value="manager">Project Manager</option>
+                    <option value="admin">Administrator</option>
+                </select>
+
+                <br><br>
+
+                <button type="submit">Add Member</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Audit Log -->
+        <section id="audit">
+            <h2>Audit Log</h2>
+
+            <table border="1">
+                <tr>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                </tr>
+
+                <tr>
+                    <td>November 5</td>
+                    <td>Admin</td>
+                    <td>Created Project</td>
+                    <td>Website Development</td>
+                </tr>
+
+                <tr>
+                    <td>November 5</td>
+                    <td>Member 1</td>
+                    <td>Updated Task</td>
+                    <td>Design Homepage</td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>Multi-Task Project Manager</p>
+        <p>Software Engineering Project - Trine University</p>
+    </footer>
+
+</body>
+</html>
