@@ -1,4 +1,17 @@
--- create if not exists table
+-- Written by James Willmore
+-- For Software Engineering SE-353-01-FA-2026
+-- Class Taught By Professor Khadka
+
+-- Notes:
+-- id is a unique identifier for something, exclusively for primary keys
+-- num is a subtype of id used for link tables
+    -- num counts up for every new item linked to the main table of the link
+    -- As an example, table link_tasks_users_roles_teams
+    -- would use task_link_num along with task_id as the primary key
+    -- when indexing all the different items linked to a task
+
+-- Do not use enums within a primary key at all
+-- Whenever you reference an enum at all, you do not include an '_id' postfix to it
 
 -- all tables are
     -- users
@@ -8,8 +21,23 @@
     -- statuses
     -- task_comments
     -- teams
+    -- role_permissions
+    -- link tables
 
--- ADD STATUS LATER
+-- TODO
+    -- add triggers which check for any conflicting scopes when setting up permissions
+    -- add views to do things such as show what teams a user is in or a manager of
+        -- see what permissions a role has
+        -- see what roles a user has
+        -- make the data stored in link tables more readable
+    -- add check constraints where nessicary
+    -- get the createModify items into every table
+-- drop table if exists role
+
+-- drop database if exists seproject;
+-- create database seproject;
+-- use seproject;
+
 
 create table createModify (
     -- created is for creation of database item
@@ -21,17 +49,65 @@ create table createModify (
 );
 
 -- enum tables
--- table for use_types enum
-create table enum_use_types (
+-- table for scopes enum
+create table enum_scopes (
     enum_id int,
     name varchar(255) not null,
-    constraint enum_use_types_enum_id_pk primary key (enum_id)
+    constraint enum_scopes_enum_id_pk primary key (enum_id)
 );
-insert into enum_use_types (enum_id, name) values
-    (0, 'undefined'),
-    (1, 'global'),
+insert into enum_scopes (enum_id, name) values
+    (0, 'undefined'), -- DO NOT CHANGE
+    (1, 'global'), -- DO NOT CHANGE
     (2, 'project'),
-    (3, 'task');
+    (3, 'task'),
+    (4, 'team'),
+    (5, 'user'),
+    (6, 'comment');
+
+-- table for permission_flags enum
+create table enum_permission_flags (
+    enum_id int,
+    name varchar(255) not null,
+    constraint enum_permission_flags_enum_id_pk primary key (enum_id)
+);
+insert into enum_permission_flags (enum_id, name) values
+    (0, 'undefined'), -- DO NOT CHANGE
+    (1, 'disabled'),
+    (2, 'enabled'),
+    (3, 'none'),
+    (4, 'read'),
+    (5, 'write');
+
+-- table for list_permissions enum
+create table enum_list_permissions (
+    enum_id int,
+    scope int not null,
+    name varchar(255) not null,
+    constraint enum_list_permissions_enum_id_pk primary key (enum_id),
+    constraint enum_list_permissions_scope_fk
+        foreign key (scope)
+        references enum_scopes (enum_id)
+);
+insert into enum_list_permissions (enum_id, name, scope) values
+    (0, 'undefined', 0), -- DO NOT CHANGE
+    (1, 'undefined global', 1); -- DO NOT CHANGE
+
+-- table for audit_reference_type enum
+create table enum_audit_reference_types (
+    enum_id int,
+    name varchar(255) not null,
+    constraint enum_audit_reference_types_enum_id_pk primary key (enum_id)
+    -- this table is used to uniquely identify each table in the database
+);
+
+-- table for audit_reasons enum
+create table enum_audit_reasons (
+    enum_id int,
+    name varchar(255) not null,
+    constraint enum_audit_reasons_enum_id_pk primary key (enum_id)
+    -- this is for telling which audit reason happened, and includes a description of it
+);
+
 
 
 -- primary tables
@@ -94,31 +170,31 @@ create table roles (
     role_id int,
     project_id int,
     name varchar(255) not null,
-    use_type int not null default 1, -- assumes 1 references 'global'
+    scope int not null default 0, -- assumes 1 references 'undefined'
     constraint roles_role_id_pk primary key (role_id),
     constraint roles_project_id_fk
         foreign key (project_id)
         references projects (project_id),
-    constraint roles_use_type_fk
-        foreign key (use_type)
-        references enum_use_types (enum_id)
-    -- may need a trigger to make use_type to default to the enum_id of some specific name you have
+    constraint roles_scope_fk
+        foreign key (scope)
+        references enum_scopes (enum_id)
+    -- may need a trigger to make scope to default to the enum_id of some specific name you have
 );
 
 create table statuses (
     status_id int,
     project_id int,
     name varchar(255) not null,
-    use_type int not null default 1, -- assumes 1 references 'global'
+    scope int not null default 0, -- assumes 0 references 'undefined'
     description varchar(255),
     constraint statuses_status_id_pk primary key (status_id),
     constraint statuses_project_id_fk
         foreign key (project_id)
         references projects (project_id),
-    constraint statuses_use_type_fk
-        foreign key (use_type)
-        references enum_use_types (enum_id)
-    -- may need a trigger to set use_type to some enum_id based on a string
+    constraint statuses_scope_fk
+        foreign key (scope)
+        references enum_scopes (enum_id)
+    -- may need a trigger to set scope to some enum_id based on a string
 );
 
 create table teams (
@@ -132,3 +208,36 @@ create table teams (
         references users (user_id)
 
 );
+
+create table role_permissions (
+    permission_num int,
+    role_id int,
+    name int not null default 0, -- enum referencing enum_list_permissions
+    flag int not null default 0, -- enum referencing enum_permission_flags
+    constraint role_permissions_permission_num_pk primary key (permission_num, role_id),
+    constraint role_permissions_role_id_fk
+        foreign key (role_id)
+        references roles (role_id),
+    constraint role_permissions_name_fk
+        foreign key (name)
+        references enum_list_permissions (enum_id),
+    constraint role_permissions_flag_fk
+        foreign key (flag)
+        references enum_permission_flags (enum_id)
+
+);
+
+create table audit_log (
+    time_logged datetime,
+    user_id int,
+    audit_reason int not null default 0, -- enum referencing enum_audit_reasons
+    constraint audit_log_time_logged_pk primary key (time_logged, user_id),
+    constraint audit_log_user_id_fk
+        foreign key (user_id)
+        references users (user_id),
+    constraint audit_log_audit_reason_fk
+        foreign key (audit_reason)
+        references enum_audit_reasons (enum_id)
+
+);
+
