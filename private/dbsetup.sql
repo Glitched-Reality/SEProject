@@ -39,14 +39,23 @@
 -- use seproject;
 
 
-create table createModify (
-    -- created is for creation of database item
-    -- modified is for modification of database information in a row, ie id's or
-    created_by_id int not null,
-    created_on datetime not null,
-    modified_by_id int not null,
-    modified_on datetime not null
-);
+-- create table createModify (
+--     -- created is for creation of database item
+--     -- modified is for modification of database information in a row, ie id's or
+--     -- creation and modification data
+--     created_by_id int not null,
+--     created_on datetime not null,
+--     modified_by_id int not null,
+--     modified_on datetime not null,
+--     constraint created_by_id_fk
+--         foreign key (created_by_id)
+--         references users (user_id),
+--     constraint modified_by_id_fk
+--         foreign key (modified_by_id)
+--         references users (user_id),
+--     constraint modified_after_creation_ck check
+--         (created_on <= modified_on)
+-- );
 
 -- enum tables
 -- table for scopes enum
@@ -112,6 +121,8 @@ create table enum_audit_reasons (
 insert into enum_audit_reasons (enum_id, name) values
     (0, 'undefined'); -- DO NOT CHANGE
 
+commit;
+
 -- primary tables
 
 create table users (
@@ -123,9 +134,22 @@ create table users (
     password varchar(255) not null default 'passwordDefault',
     last_login datetime,
     constraint users_user_id_pk primary key (user_id),
-    constraint users_email_uk unique (email)
+    constraint users_email_uk unique (email),
     -- may add checks for last_login being less than created
     -- may need to add triggers to prevent data from being deleted
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    -- date stuff
+    constraint users_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint users_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint users_modified_after_creation_ck check
+        (created_on <= modified_on)
 );
 
 create table projects (
@@ -133,8 +157,20 @@ create table projects (
     name varchar(255) not null,
     description varchar(255),
     deadline datetime not null,
-    constraint projects_project_id_pk primary key (project_id)
-
+    constraint projects_project_id_pk primary key (project_id),
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint projects_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint projects_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint projects_modified_after_creation_ck check
+        (created_on <= modified_on)
 );
 
 create table tasks (
@@ -150,7 +186,20 @@ create table tasks (
         references projects (project_id),
     constraint tasks_parent_id_fk
         foreign key (parent_id, project_id)
-        references tasks (task_id, project_id)
+        references tasks (task_id, project_id),
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint tasks_reated_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint tasks_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint tasks_modified_after_creation_ck check
+        (created_on <= modified_on)
 
 );
 
@@ -161,10 +210,25 @@ create table task_comments (
     reply_of_id int,
     message varchar(1024),
     constraint task_comments_comment_id_pk primary key (comment_id, task_id, project_id),
-    constraint task_comments_task_id_fk foreign key (task_id, project_id) references tasks (task_id, project_id),
+    constraint task_comments_task_id_fk
+        foreign key (task_id, project_id)
+        references tasks (task_id, project_id),
     constraint task_comments_reply_of_id_fk
         foreign key (reply_of_id, task_id, project_id)
-        references task_comments (comment_id, task_id, project_id)
+        references task_comments (comment_id, task_id, project_id),
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint task_comments_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint task_comments_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint task_comments_modified_after_creation_ck check
+        (created_on <= modified_on)
 
 );
 
@@ -179,8 +243,21 @@ create table roles (
         references projects (project_id),
     constraint roles_scope_fk
         foreign key (scope)
-        references enum_scopes (enum_id)
+        references enum_scopes (enum_id),
     -- may need a trigger to make scope to default to the enum_id of some specific name you have
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint roles_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint roles_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint roles_modified_after_creation_ck check
+        (created_on <= modified_on)
 );
 
 create table statuses (
@@ -195,8 +272,21 @@ create table statuses (
         references projects (project_id),
     constraint statuses_scope_fk
         foreign key (scope)
-        references enum_scopes (enum_id)
+        references enum_scopes (enum_id),
     -- may need a trigger to set scope to some enum_id based on a string
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint statuses_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint statuses_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint statuses_modified_after_creation_ck check
+        (created_on <= modified_on)
 );
 
 create table teams (
@@ -207,7 +297,20 @@ create table teams (
     constraint teams_team_id_pk primary key (team_id),
     constraint teams_manager_id_fk
         foreign key (manager_id)
-        references users (user_id)
+        references users (user_id),
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint teams_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint teams_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint teams_modified_after_creation_ck check
+        (created_on <= modified_on)
 
 );
 
@@ -225,7 +328,20 @@ create table role_permissions (
         references enum_list_permissions (enum_id),
     constraint role_permissions_flag_fk
         foreign key (flag)
-        references enum_permission_flags (enum_id)
+        references enum_permission_flags (enum_id),
+    -- creation and modification data
+    created_by_id int not null,
+    created_on datetime not null,
+    modified_by_id int not null,
+    modified_on datetime not null,
+    constraint role_permissions_created_by_id_fk
+        foreign key (created_by_id)
+        references users (user_id),
+    constraint role_permissions_modified_by_id_fk
+        foreign key (modified_by_id)
+        references users (user_id),
+    constraint role_permissions_modified_after_creation_ck check
+        (created_on <= modified_on)
 
 );
 
@@ -242,4 +358,3 @@ create table audit_log (
         references enum_audit_reasons (enum_id)
 
 );
-
