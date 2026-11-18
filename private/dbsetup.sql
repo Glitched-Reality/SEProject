@@ -99,6 +99,8 @@ create table enum_audit_reference_types (
     constraint enum_audit_reference_types_enum_id_pk primary key (enum_id)
     -- this table is used to uniquely identify each table in the database
 );
+insert into enum_audit_reference_types (enum_id, name) values
+    (0, 'undefined'); -- DO NOT CHANGE
 
 -- table for audit_reasons enum
 create table enum_audit_reasons (
@@ -107,8 +109,8 @@ create table enum_audit_reasons (
     constraint enum_audit_reasons_enum_id_pk primary key (enum_id)
     -- this is for telling which audit reason happened, and includes a description of it
 );
-
-
+insert into enum_audit_reasons (enum_id, name) values
+    (0, 'undefined'); -- DO NOT CHANGE
 
 -- primary tables
 
