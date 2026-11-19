@@ -1,4 +1,3 @@
-
 /* General Page Layout */
 
 body {
@@ -6,12 +5,16 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     line-height: 1.5;
+    background-color: #f0f4f8;
+    color: #333;
 }
 
 /* Header */
 
 header {
-    padding: 20px;
+    background-color: #23466b;
+    color: white;
+    padding: 25px;
     text-align: center;
 }
 
@@ -27,8 +30,12 @@ nav {
 
 nav a {
     display: inline-block;
-    margin: 5px 10px;
-    padding: 5px;
+    margin: 5px 8px;
+    padding: 8px 10px;
+    color: white;
+    text-decoration: none;
+    background-color: #365d82;
+    border-radius: 4px;
 }
 
 /* Main Content */
@@ -36,22 +43,27 @@ nav a {
 main {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
 }
 
 /* Sections */
 
 section {
+    background-color: white;
     margin-bottom: 30px;
-    padding: 15px 0;
+    padding: 20px;
+    border: 1px solid #d5dfe8;
+    border-radius: 5px;
 }
 
 section h2 {
+    color: #23466b;
     margin-top: 0;
     margin-bottom: 20px;
 }
 
 section h3 {
+    color: #365d82;
     margin-top: 25px;
     margin-bottom: 15px;
 }
@@ -77,11 +89,18 @@ table {
     border-collapse: collapse;
     margin-top: 15px;
     margin-bottom: 25px;
+    background-color: white;
+}
+
+th {
+    background-color: #365d82;
+    color: white;
 }
 
 th, td {
     padding: 12px;
     text-align: left;
+    border: 1px solid #cbd5df;
 }
 
 /* Forms */
@@ -94,13 +113,17 @@ form {
 label {
     display: inline-block;
     margin-bottom: 8px;
+    color: #333;
 }
 
 input, select, textarea {
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
     max-width: 100%;
     box-sizing: border-box;
+    border: 1px solid #b8c6d4;
+    border-radius: 4px;
+    background-color: white;
 }
 
 textarea {
@@ -111,14 +134,26 @@ textarea {
 /* Buttons */
 
 button {
+    background-color: #28649a;
+    color: white;
+    border: none;
+    border-radius: 4px;
     padding: 10px 20px;
     margin-top: 10px;
     cursor: pointer;
 }
 
+/* Links */
+
+main a {
+    color: #28649a;
+}
+
 /* Horizontal Lines */
 
 hr {
+    border: none;
+    border-top: 1px solid #d5dfe8;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -126,6 +161,8 @@ hr {
 /* Footer */
 
 footer {
+    background-color: #23466b;
+    color: white;
     text-align: center;
     padding: 20px;
     margin-top: 30px;
@@ -145,6 +182,10 @@ footer {
 
     nav a {
         margin: 5px;
+    }
+
+    section {
+        padding: 15px;
     }
 
     table {
