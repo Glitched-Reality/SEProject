@@ -8,6 +8,15 @@
 <body>
     <h1>Multi Project Manager</h1>
     <p>Laravel is ready.</p>
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="POST" action="/login">
         @csrf
         <label for="email">Email:</label>
