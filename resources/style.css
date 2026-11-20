@@ -1,0 +1,199 @@
+/* General Page Layout */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+/* Header */
+
+header {
+    background-color: #23466b;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 15px;
+}
+
+/* Navigation */
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    display: inline-block;
+    margin: 5px 8px;
+    padding: 8px 10px;
+    color: white;
+    text-decoration: none;
+    background-color: #365d82;
+    border-radius: 4px;
+}
+
+/* Main Content */
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+/* Sections */
+
+section {
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #d5dfe8;
+    border-radius: 5px;
+}
+
+section h2 {
+    color: #23466b;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+section h3 {
+    color: #365d82;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* Paragraphs and Lists */
+
+p {
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 30px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    background-color: white;
+}
+
+th {
+    background-color: #365d82;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #cbd5df;
+}
+
+/* Forms */
+
+form {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #b8c6d4;
+    border-radius: 4px;
+    background-color: white;
+}
+
+textarea {
+    width: 300px;
+    min-height: 80px;
+}
+
+/* Buttons */
+
+button {
+    background-color: #28649a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Links */
+
+main a {
+    color: #28649a;
+}
+
+/* Horizontal Lines */
+
+hr {
+    border: none;
+    border-top: 1px solid #d5dfe8;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+
+footer {
+    background-color: #23466b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* Smaller Screens */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 15px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+}
