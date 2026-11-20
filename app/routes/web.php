@@ -14,7 +14,6 @@ Route::post('/login', function (\Illuminate\Http\Request $request) {
     $email = $request->input('email');
     $password = $request->input('password');
 
-    // Here you would typically check the credentials against the database
     if ($email === 'test@example.com' && $password === 'password') {
         return redirect('/home');
     }
