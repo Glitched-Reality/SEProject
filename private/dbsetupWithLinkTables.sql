@@ -141,9 +141,9 @@ create table users (
     constraint users_email_uk unique (email),
     -- may add checks for last_login being less than created
     -- may need to add triggers to prevent data from being deleted,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint users_created_by_id_fk
         foreign key (created_by_id)
@@ -175,9 +175,9 @@ create table projects (
     deadline datetime not null,
     constraint projects_project_id_pk primary key (project_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint projects_created_by_id_fk
         foreign key (created_by_id)
@@ -204,9 +204,9 @@ create table tasks (
         foreign key (parent_id, project_id)
         references tasks (task_id, project_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint tasks_reated_by_id_fk
         foreign key (created_by_id)
@@ -233,9 +233,9 @@ create table task_comments (
         foreign key (reply_of_id, task_id, project_id)
         references task_comments (comment_id, task_id, project_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint task_comments_created_by_id_fk
         foreign key (created_by_id)
@@ -262,9 +262,9 @@ create table roles (
         references enum_scopes (enum_id),
     -- may need a trigger to make scope to default to the enum_id of some specific name you have
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint roles_created_by_id_fk
         foreign key (created_by_id)
@@ -291,9 +291,9 @@ create table statuses (
         references enum_scopes (enum_id),
     -- may need a trigger to set scope to some enum_id based on a string
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint statuses_created_by_id_fk
         foreign key (created_by_id)
@@ -315,9 +315,9 @@ create table teams (
         foreign key (manager_id)
         references users (user_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint teams_created_by_id_fk
         foreign key (created_by_id)
@@ -346,9 +346,9 @@ create table role_permissions (
         foreign key (flag)
         references enum_permission_flags (enum_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint role_permissions_created_by_id_fk
         foreign key (created_by_id)
@@ -388,9 +388,9 @@ create table link_users_roles (
         foreign key (role_id)
         references roles (role_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_users_roles_created_by_id_fk
         foreign key (created_by_id)
@@ -413,9 +413,9 @@ create table link_users_statuses (
         foreign key (status_id)
         references statuses (status_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_users_statuses_created_by_id_fk
         foreign key (created_by_id)
@@ -438,9 +438,9 @@ create table link_teams_roles (
         foreign key (role_id)
         references roles (role_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_teams_roles_created_by_id_fk
         foreign key (created_by_id)
@@ -463,9 +463,9 @@ create table link_teams_users (
         foreign key (user_id)
         references users (user_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_teams_users_created_by_id_fk
         foreign key (created_by_id)
@@ -501,9 +501,9 @@ create table link_tasks_users_roles_teams (
         foreign key (team_id)
         references teams (team_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_tasks_users_roles_teams_created_by_id_fk
         foreign key (created_by_id)
@@ -526,9 +526,9 @@ create table link_tasks_statuses (
         foreign key (status_id)
         references statuses (status_id),
     -- creation and modification data,
-    created_by_id int not null default 0,
+    created_by_id int not null,
     created_on datetime not null default  current_timestamp,
-    modified_by_id int not null default 0,
+    modified_by_id int not null,
     modified_on datetime not null default current_timestamp,
     constraint link_tasks_statuses_created_by_id_fk
         foreign key (created_by_id)
