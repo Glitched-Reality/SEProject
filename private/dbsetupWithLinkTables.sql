@@ -68,14 +68,6 @@ create table enum_scopes (
     name varchar(255) not null,
     constraint enum_scopes_enum_id_pk primary key (enum_id)
 );
-insert into enum_scopes (enum_id, name) values
-    (0, 'undefined'), -- DO NOT CHANGE
-    (1, 'global'), -- DO NOT CHANGE
-    (2, 'project'),
-    (3, 'task'),
-    (4, 'team'),
-    (5, 'user'),
-    (6, 'comment');
 
 -- table for permission_flags enum
 create table enum_permission_flags (
@@ -83,13 +75,6 @@ create table enum_permission_flags (
     name varchar(255) not null,
     constraint enum_permission_flags_enum_id_pk primary key (enum_id)
 );
-insert into enum_permission_flags (enum_id, name) values
-    (0, 'undefined'), -- DO NOT CHANGE
-    (1, 'disabled'),
-    (2, 'enabled'),
-    (3, 'none'),
-    (4, 'read'),
-    (5, 'write');
 
 -- table for list_permissions enum
 create table enum_list_permissions (
@@ -101,9 +86,6 @@ create table enum_list_permissions (
         foreign key (scope)
         references enum_scopes (enum_id)
 );
-insert into enum_list_permissions (enum_id, name, scope) values
-    (0, 'undefined', 0), -- DO NOT CHANGE
-    (1, 'undefined global', 1); -- DO NOT CHANGE
 
 -- table for audit_reference_type enum
 create table enum_audit_reference_types (
@@ -112,8 +94,6 @@ create table enum_audit_reference_types (
     constraint enum_audit_reference_types_enum_id_pk primary key (enum_id)
     -- this table is used to uniquely identify each table in the database
 );
-insert into enum_audit_reference_types (enum_id, name) values
-    (0, 'undefined'); -- DO NOT CHANGE
 
 -- table for audit_reasons enum
 create table enum_audit_reasons (
@@ -122,8 +102,6 @@ create table enum_audit_reasons (
     constraint enum_audit_reasons_enum_id_pk primary key (enum_id)
     -- this is for telling which audit reason happened, and includes a description of it
 );
-insert into enum_audit_reasons (enum_id, name) values
-    (0, 'undefined'); -- DO NOT CHANGE
 
 -- commit;
 
