@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Multi-Task Project Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h1>Multi-Task Project Manager</h1>
+
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="audit.html">Audit Log</a>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <!-- Project Information -->
+        <section id="projectInfo">
+
+            <h2 id="projectTitle">Project Details</h2>
+
+            <p id="projectDescriptionText"></p>
+            <p id="projectDeadlineText"></p>
+            <p id="projectProgressText"></p>
+
+        </section>
+
+        <!-- Task Management -->
+        <section id="tasks">
+
+            <h2>Task Management</h2>
+
+            <h3>Current Tasks</h3>
+
+            <table>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Assigned To</th>
+                    <th>Priority</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr data-project="website">
+                    <td>Design Homepage</td>
+                    <td>Member 1</td>
+                    <td>High</td>
+                    <td>November 10</td>
+                    <td>In Progress</td>
+                </tr>
+
+                <tr data-project="database">
+                    <td>Create Database</td>
+                    <td>Member 2</td>
+                    <td>Medium</td>
+                    <td>November 15</td>
+                    <td>Not Started</td>
+                </tr>
+            </table>
+
+            <h3>Create New Task</h3>
+
+            <form id="taskForm">
+
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName"
+                       name="taskName" required>
+
+                <br><br>
+
+                <label for="taskDescription">Task Description:</label>
+                <br>
+
+                <textarea id="taskDescription"
+                          name="taskDescription"></textarea>
+
+                <br><br>
+
+                <label for="assignedMember">Assign To:</label>
+
+                <select id="assignedMember" name="assignedMember">
+                    <option value="">Select Member</option>
+                    <option value="member1">Member 1</option>
+                    <option value="member2">Member 2</option>
+                </select>
+
+                <br><br>
+
+                <label for="taskPriority">Priority:</label>
+
+                <select id="taskPriority" name="taskPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <br><br>
+
+                <label for="taskDeadline">Due Date:</label>
+
+                <input type="date" id="taskDeadline"
+                       name="taskDeadline">
+
+                <br><br>
+
+                <label for="taskStatus">Status:</label>
+
+                <select id="taskStatus" name="taskStatus">
+                    <option value="not-started">Not Started</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <br><br>
+
+                <button type="submit">Create Task</button>
+
+            </form>
+
+        </section>
+
+        <!-- Project Calendar -->
+        <section id="calendar">
+
+            <h2>Project Calendar</h2>
+
+            <p>Upcoming deadlines and events for this project.</p>
+
+            <h3>Upcoming Events</h3>
+
+            <ul>
+                <li data-project="website">
+                    November 10 - Homepage Due
+                </li>
+
+                <li data-project="database">
+                    November 15 - Database Due
+                </li>
+
+                <li data-project="website">
+                    November 20 - Application Testing
+                </li>
+
+                <li data-project="database">
+                    November 25 - Project Deadline
+                </li>
+            </ul>
+
+        </section>
+
+        <!-- Team Members -->
+        <section id="members">
+
+            <h2>Team Members</h2>
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+
+                <tr data-project="website">
+                    <td>Member 1</td>
+                    <td>member1@example.com</td>
+                    <td>Project Manager</td>
+                </tr>
+
+                <tr data-project="database">
+                    <td>Member 2</td>
+                    <td>member2@example.com</td>
+                    <td>Team Member</td>
+                </tr>
+            </table>
+
+            <h3>Add Team Member</h3>
+
+            <form id="memberForm">
+
+                <label for="memberEmail">Email:</label>
+
+                <input type="email" id="memberEmail"
+                       name="memberEmail" required>
+
+                <br><br>
+
+                <label for="memberRole">Role:</label>
+
+                <select id="memberRole" name="memberRole">
+                    <option value="member">Team Member</option>
+                    <option value="manager">Project Manager</option>
+                    <option value="admin">Administrator</option>
+                </select>
+
+                <br><br>
+
+                <button type="submit">Add Member</button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <p>Multi-Task Project Manager</p>
+        <p>Software Engineering Project - Trine University</p>
+    </footer>
+
+    <!-- Project Selection -->
+    <script>
+
+        const projects = {
+
+            website: {
+                name: "Website Development",
+                description: "Create project website",
+                deadline: "November 20",
+                progress: "50%",
+                member: "member1"
+            },
+
+            database: {
+                name: "Database Design",
+                description: "Develop database structure",
+                deadline: "November 25",
+                progress: "25%",
+                member: "member2"
+            }
+
+        };
+
+        const id = new URLSearchParams(
+            window.location.search
+        ).get("id");
+
+        const project = Object.hasOwn(projects, id)
+            ? projects[id]
+            : null;
+
+        if (project) {
+
+            document.getElementById("projectTitle").textContent =
+                project.name;
+
+            document.getElementById("projectDescriptionText").textContent =
+                project.description;
+
+            document.getElementById("projectDeadlineText").textContent =
+                "Deadline: " + project.deadline;
+
+            document.getElementById("projectProgressText").textContent =
+                "Progress: " + project.progress;
+
+            // Display information for the selected project
+
+            document.querySelectorAll("[data-project]").forEach(item => {
+
+                item.hidden = item.dataset.project !== id;
+
+            });
+
+            // Display members assigned to the selected project
+
+            document.querySelectorAll("#assignedMember option").forEach(option => {
+
+                if (option.value && option.value !== project.member) {
+                    option.remove();
+                }
+
+            });
+
+        } else {
+
+            document.getElementById("projectTitle").textContent =
+                "Select a project from the dashboard";
+
+            document.querySelectorAll("#tasks, #calendar, #members").forEach(section => {
+
+                section.hidden = true;
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
