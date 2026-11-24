@@ -9,6 +9,7 @@ body {
     color: #333;
 }
 
+
 /* Header */
 
 header {
@@ -21,6 +22,7 @@ header {
 header h1 {
     margin-bottom: 15px;
 }
+
 
 /* Navigation */
 
@@ -38,6 +40,7 @@ nav a {
     border-radius: 4px;
 }
 
+
 /* Main Content */
 
 main {
@@ -45,6 +48,7 @@ main {
     margin: 0 auto;
     padding: 25px;
 }
+
 
 /* Sections */
 
@@ -68,6 +72,7 @@ section h3 {
     margin-bottom: 15px;
 }
 
+
 /* Paragraphs and Lists */
 
 p {
@@ -81,6 +86,7 @@ ul {
 li {
     margin-bottom: 8px;
 }
+
 
 /* Tables */
 
@@ -102,6 +108,7 @@ th, td {
     text-align: left;
     border: 1px solid #cbd5df;
 }
+
 
 /* Forms */
 
@@ -131,6 +138,7 @@ textarea {
     min-height: 80px;
 }
 
+
 /* Buttons */
 
 button {
@@ -143,11 +151,25 @@ button {
     cursor: pointer;
 }
 
+
 /* Links */
 
 main a {
     color: #28649a;
 }
+
+
+/* Open Project Buttons */
+
+main a.project-link {
+    display: inline-block;
+    background-color: #28649a;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
 
 /* Horizontal Lines */
 
@@ -158,6 +180,7 @@ hr {
     margin-bottom: 20px;
 }
 
+
 /* Footer */
 
 footer {
@@ -167,6 +190,7 @@ footer {
     padding: 20px;
     margin-top: 30px;
 }
+
 
 /* Smaller Screens */
 
