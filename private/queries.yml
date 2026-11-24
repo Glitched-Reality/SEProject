@@ -1,2 +1,3 @@
 query1="SELECT * FROM yes;"
 query2="fdsboaufbsbfuoab;"
+query3="select * from teams t left join users u on t.mgr_id = u.user_id;"
